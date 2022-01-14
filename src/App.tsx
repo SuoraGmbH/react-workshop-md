@@ -6,6 +6,7 @@ import TimeEntryForm from "./components/TimeEntryForm";
 import { GithubRepoInformation } from "./components/GithubRepoInformation";
 import DynamicGithubRepoInformation from "./components/DynamicGithubRepoInformation";
 import Counter from "./components/Counter";
+import TimeEntryList from "./components/TimeEntryList";
 
 export function App() {
   const timeEntry: TimeEntry = {
@@ -17,6 +18,7 @@ export function App() {
 
   return (
     <div>
+      <TimeEntryList />
       <Counter />
       <ComponentWithChildren>
         <TimeEntryView timeEntry={timeEntry} />

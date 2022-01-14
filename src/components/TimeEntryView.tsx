@@ -6,7 +6,7 @@ type Props = {
 };
 
 const TimeEntryView: React.FunctionComponent<Props> = ({ timeEntry }) => {
-  return <div>Kommentar: {timeEntry.comment.toUpperCase()}</div>;
+  return <div>Kommentar: {timeEntry.comment}</div>;
 };
 
 export default TimeEntryView;
