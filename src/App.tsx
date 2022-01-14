@@ -1,22 +1,27 @@
 import React from "react";
 import TimeEntryView from "./components/TimeEntryView";
 import ComponentWithChildren from "./components/ComponentWithChildren";
+import { TimeEntry } from "./domain/TimeEntry";
 
 export function App() {
+  const timeEntry: TimeEntry = {
+    id: "1234",
+    start: new Date(),
+    end: new Date(),
+    comment: "Hallo Welt",
+  };
+
   return (
     <div>
       <ComponentWithChildren>
-        <TimeEntryView comment="Hallo Welt123" />
+        <TimeEntryView timeEntry={timeEntry} />
       </ComponentWithChildren>
       <ComponentWithChildren>
         <div>asdda</div>
       </ComponentWithChildren>
       <ComponentWithChildren></ComponentWithChildren>
       <ComponentWithChildren>asdsa</ComponentWithChildren>
-      <TimeEntryView comment="Hallo Welt">Hello Children</TimeEntryView>
-      <TimeEntryView comment="Hallo Welt123" />
-      <TimeEntryView comment="Hallo Welt" />
-      <TimeEntryView comment="Hallo Welt" />
+      <TimeEntryView timeEntry={timeEntry}>Hello Children</TimeEntryView>
       MediaDIALOG
     </div>
   );

@@ -1,11 +1,12 @@
 import React from "react";
+import { TimeEntry } from "../domain/TimeEntry";
 
 type Props = {
-  comment: string;
+  timeEntry: TimeEntry;
 };
 
-const TimeEntryView: React.FunctionComponent<Props> = ({ comment }: Props) => {
-  return <div>Kommentar: {comment.toUpperCase()}</div>;
+const TimeEntryView: React.FunctionComponent<Props> = ({ timeEntry }) => {
+  return <div>Kommentar: {timeEntry.comment.toUpperCase()}</div>;
 };
 
 export default TimeEntryView;
