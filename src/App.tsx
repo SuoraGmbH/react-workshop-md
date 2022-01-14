@@ -2,6 +2,7 @@ import React from "react";
 import TimeEntryView from "./components/TimeEntryView";
 import ComponentWithChildren from "./components/ComponentWithChildren";
 import { TimeEntry } from "./domain/TimeEntry";
+import TimeEntryForm from "./components/TimeEntryForm";
 
 export function App() {
   const timeEntry: TimeEntry = {
@@ -22,6 +23,7 @@ export function App() {
       <ComponentWithChildren></ComponentWithChildren>
       <ComponentWithChildren>asdsa</ComponentWithChildren>
       <TimeEntryView timeEntry={timeEntry}>Hello Children</TimeEntryView>
+      <TimeEntryForm />
       MediaDIALOG
     </div>
   );
