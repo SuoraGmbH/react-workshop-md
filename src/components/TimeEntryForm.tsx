@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import TextDisplay from "./TextDisplay";
 
-const TimeEntryForm: React.FunctionComponent = () => {
+const TimeEntryForm = () => {
   console.log("TimeEntryForm renders");
   const [inputValue, setInputValue] = useState("");
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
@@ -28,7 +28,7 @@ const TimeEntryForm: React.FunctionComponent = () => {
       <input onChange={handleChange} value={inputValue} />
       <TextDisplay value={inputValue} />
       <TextDisplay value="Render dich bitte nicht neu" />
-      {inputValue}
+      {inputValue} <hr />
     </form>
   );
 };
