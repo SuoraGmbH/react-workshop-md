@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ComponentProps } from "react";
 import { TimeEntry } from "../domain/TimeEntry";
 
 type Props = {
