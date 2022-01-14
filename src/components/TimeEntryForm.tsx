@@ -1,9 +1,8 @@
-import { useState } from "react";
-import TimeEntryView from "./TimeEntryView";
-import ComponentWithChildren from "./ComponentWithChildren";
+import { useEffect, useState } from "react";
 import TextDisplay from "./TextDisplay";
 
 const TimeEntryForm: React.FunctionComponent = () => {
+  console.log("TimeEntryForm renders");
   const [inputValue, setInputValue] = useState("");
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
@@ -14,6 +13,14 @@ const TimeEntryForm: React.FunctionComponent = () => {
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     setInputValue(event.target.value.toUpperCase());
   };
+
+  useEffect(() => {
+    console.log("TimeEntryForm enters the DOM");
+
+    return () => {
+      console.log("TimeEntryForm left the DOM");
+    };
+  }, []);
 
   return (
     <form onSubmit={handleSubmit}>
