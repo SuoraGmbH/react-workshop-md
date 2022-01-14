@@ -1,4 +1,7 @@
 import { useState } from "react";
+import TimeEntryView from "./TimeEntryView";
+import ComponentWithChildren from "./ComponentWithChildren";
+import TextDisplay from "./TextDisplay";
 
 const TimeEntryForm: React.FunctionComponent = () => {
   const [inputValue, setInputValue] = useState("");
@@ -16,6 +19,8 @@ const TimeEntryForm: React.FunctionComponent = () => {
     <form onSubmit={handleSubmit}>
       <button type="submit">Submit</button>
       <input onChange={handleChange} value={inputValue} />
+      <TextDisplay value={inputValue} />
+      <TextDisplay value="Render dich bitte nicht neu" />
       {inputValue}
     </form>
   );
