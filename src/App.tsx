@@ -8,6 +8,7 @@ import DynamicGithubRepoInformation from "./components/DynamicGithubRepoInformat
 import Counter from "./components/Counter";
 import TimeEntryList from "./components/TimeEntryList";
 import DynamicTimeEntryList from "./components/DynamicTimeEntryList";
+import TimeEntryListFromServer from "./components/TimeEntryListFromServer";
 
 export function App() {
   const timeEntry: TimeEntry = {
@@ -20,6 +21,8 @@ export function App() {
   return (
     <div>
       <DynamicTimeEntryList />
+      <hr />
+      <TimeEntryListFromServer />
       {/*<Counter />*/}
       {/*<ComponentWithChildren>*/}
       {/*  <TimeEntryView timeEntry={timeEntry} />*/}
@@ -34,7 +37,6 @@ export function App() {
       {/*<GithubRepoInformation repo="facebook/react" />*/}
       {/*<GithubRepoInformation repo="angular/angular" />*/}
       {/*<DynamicGithubRepoInformation />*/}
-      MediaDIALOG
     </div>
   );
 }
