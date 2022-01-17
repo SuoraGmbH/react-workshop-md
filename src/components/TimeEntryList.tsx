@@ -1,9 +1,11 @@
-import React from "react";
+import React, { ComponentProps } from "react";
 import { TimeEntry } from "../domain/TimeEntry";
 import TimeEntryView from "./TimeEntryView";
 
+// const foo: ComponentProps<typeof TimeEntryView>["timeEntry"][] = [];
+
 interface Props {
-  timeEntries: TimeEntry[];
+  timeEntries: ComponentProps<typeof TimeEntryView>["timeEntry"][];
 }
 const TimeEntryList: React.FunctionComponent<Props> = ({ timeEntries }) => {
   return (
