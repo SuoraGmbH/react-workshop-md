@@ -2,17 +2,10 @@ import { render, screen } from "@testing-library/react";
 import { GithubRepoInformation } from "./GithubRepoInformation";
 import { setupServer } from "msw/node";
 import { rest } from "msw";
+import { handlers } from "../mocks/handlers";
+import githubRepoFacebookReactHandler from "../mocks/github/repos/facebook/react";
 
-const mockServer = setupServer(
-  rest.get(
-    "https://api.github.com/repos/facebook/react",
-    (req, res, context) => {
-      return res(
-        context.json({ open_issues_count: 4711, stargazers_count: 23 })
-      );
-    }
-  )
-);
+const mockServer = setupServer(githubRepoFacebookReactHandler);
 
 describe("<GithubRepoInformation />", () => {
   beforeAll(() => mockServer.listen({ onUnhandledRequest: "error" }));
