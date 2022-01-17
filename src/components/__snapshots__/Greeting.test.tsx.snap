@@ -2,7 +2,9 @@
 
 exports[`<Greeting /> it renders according to snapshot 1`] = `
 <div>
-  <p>
+  <p
+    data-testid="greetings"
+  >
     Hello, 
     PHILIPP
     !
