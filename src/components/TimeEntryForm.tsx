@@ -11,6 +11,10 @@ const TimeEntryForm: React.FunctionComponent<Props> = ({ onAddTimeEntry }) => {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
+    if (inputValue === "") {
+      return;
+    }
+
     if (onAddTimeEntry) {
       onAddTimeEntry({
         id: new Date().toISOString(),

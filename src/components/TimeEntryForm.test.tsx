@@ -76,4 +76,14 @@ describe("<TimeEntryForm />", () => {
     userEvent.type(textbox, "{enter}");
     expect(textbox).toHaveValue("");
   });
+
+  test("submitting without content does not work", () => {
+    const handleAddTimeEntryMock = jest.fn();
+
+    render(<TimeEntryForm onAddTimeEntry={handleAddTimeEntryMock} />);
+    const textbox = screen.getByRole("textbox");
+
+    userEvent.type(textbox, "{enter}");
+    expect(handleAddTimeEntryMock).not.toHaveBeenCalled();
+  });
 });
