@@ -1,17 +1,31 @@
 import { useEffect, useState } from "react";
 import TextDisplay from "./TextDisplay";
+import { TimeEntry } from "../domain/TimeEntry";
 
-const TimeEntryForm = () => {
+type Props = {
+  onAddTimeEntry?: (timeEntry: TimeEntry) => void;
+};
+
+const TimeEntryForm: React.FunctionComponent<Props> = ({ onAddTimeEntry }) => {
   console.log("TimeEntryForm renders");
   const [inputValue, setInputValue] = useState("");
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    console.log(inputValue);
+
+    if (onAddTimeEntry) {
+      onAddTimeEntry({
+        id: new Date().toISOString(),
+        start: new Date(),
+        end: new Date(),
+        comment: inputValue,
+      });
+    }
+
     setInputValue("");
   };
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-    setInputValue(event.target.value.toUpperCase());
+    setInputValue(event.target.value);
   };
 
   useEffect(() => {
