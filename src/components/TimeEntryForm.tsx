@@ -7,7 +7,6 @@ type Props = {
 };
 
 const TimeEntryForm: React.FunctionComponent<Props> = ({ onAddTimeEntry }) => {
-  console.log("TimeEntryForm renders");
   const [inputValue, setInputValue] = useState("");
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
@@ -28,21 +27,11 @@ const TimeEntryForm: React.FunctionComponent<Props> = ({ onAddTimeEntry }) => {
     setInputValue(event.target.value);
   };
 
-  useEffect(() => {
-    console.log("TimeEntryForm enters the DOM");
-
-    return () => {
-      console.log("TimeEntryForm left the DOM");
-    };
-  }, []);
-
   return (
     <form onSubmit={handleSubmit}>
       <button type="submit">Submit</button>
       <input onChange={handleChange} value={inputValue} />
-      <TextDisplay value={inputValue} />
-      <TextDisplay value="Render dich bitte nicht neu" />
-      {inputValue} <hr />
+      <div>{inputValue}</div>
     </form>
   );
 };
