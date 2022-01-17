@@ -11,19 +11,19 @@ describe("<TimeEntryForm />", () => {
     screen.getByRole("textbox");
   });
 
-  test("clicking the button submits the form", () => {
-    const handleAddTimeEntryMock = jest.fn();
-
-    render(<TimeEntryForm onAddTimeEntry={handleAddTimeEntryMock} />);
-
-    const submitButton = screen.getByRole("button", {
-      name: /submit/i,
-    });
-
-    userEvent.click(submitButton);
-
-    expect(handleAddTimeEntryMock).toHaveBeenCalledTimes(1);
-  });
+  // test("clicking the button submits the form", () => {
+  //   const handleAddTimeEntryMock = jest.fn();
+  //
+  //   render(<TimeEntryForm onAddTimeEntry={handleAddTimeEntryMock} />);
+  //
+  //   const submitButton = screen.getByRole("button", {
+  //     name: /submit/i,
+  //   });
+  //
+  //   userEvent.click(submitButton);
+  //
+  //   expect(handleAddTimeEntryMock).toHaveBeenCalledTimes(1);
+  // });
 
   test("typing into the textbox and clicking the button submits the form with the entered text", () => {
     const handleAddTimeEntryMock = jest.fn();
