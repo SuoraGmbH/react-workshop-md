@@ -11,9 +11,21 @@ export const GithubRepoInformation: React.FunctionComponent<Props> = ({
   const [repoData, setRepoData] = useState<GithubRepoData>();
 
   useEffect(() => {
-    fetch(`https://api.github.com/repos/${repo}`)
+    const abortController = new AbortController();
+    fetch(`https://api.github.com/repos/${repo}`, {
+      signal: abortController.signal,
+    })
       .then((response) => response.json())
-      .then((data) => setRepoData(data));
+      .then((data) => setRepoData(data))
+      .catch((error) => {
+        if (error.name === "AbortError") {
+          return;
+        }
+      });
+
+    return () => {
+      abortController.abort();
+    };
   }, [repo]);
 
   if (!repoData) {
