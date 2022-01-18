@@ -115,7 +115,6 @@ definitions:
         type: "string"
       comment:
         type: "string"
-        example: "doggie"
       start:
         type: "string"
         format: "date-time"
