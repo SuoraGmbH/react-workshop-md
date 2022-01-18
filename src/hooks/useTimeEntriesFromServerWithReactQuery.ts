@@ -11,11 +11,12 @@ type UseTimeEntriesFromServerReturnValue = {
   refetch: () => void;
 };
 
+export const timeEntriesQueryKey = "timeEntries";
 const useTimeEntriesFromServerWithReactQuery =
   (): UseTimeEntriesFromServerReturnValue => {
     const baseUrl = useBaseUrl();
     const { isLoading, refetch, data, error } = useQuery<TimeEntry[], Error>(
-      ["timeEntries"],
+      [timeEntriesQueryKey],
       async ({ signal }) => {
         const response = await fetch(baseUrl + "/timeEntries", { signal });
         const timeEntries: TimeEntryBackend[] = await response.json();

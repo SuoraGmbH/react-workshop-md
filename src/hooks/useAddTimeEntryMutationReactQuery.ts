@@ -1,6 +1,6 @@
 import { TimeEntry } from "../domain/TimeEntry";
-import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
+import { timeEntriesQueryKey } from "./useTimeEntriesFromServerWithReactQuery";
 
 type MutationReturnValue = {
   add: (timeEntry: TimeEntry) => void;
@@ -19,7 +19,7 @@ const useAddTimeEntryMutationReactQuery = (): MutationReturnValue => {
         },
       });
     },
-    { onSettled: (data) => queryClient.invalidateQueries("timeEntries") }
+    { onSettled: (data) => queryClient.invalidateQueries(timeEntriesQueryKey) }
   );
 
   return { add: mutate, isLoading };
