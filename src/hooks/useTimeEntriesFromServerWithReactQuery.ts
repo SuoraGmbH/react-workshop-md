@@ -18,7 +18,7 @@ const useTimeEntriesFromServerWithReactQuery =
       ["timeEntries"],
       async ({ signal }) => {
         const response = await fetch(baseUrl + "/timeEntries", { signal });
-        const timeEntries = await response.json();
+        const timeEntries: TimeEntryBackend[] = await response.json();
         return timeEntries.map(convertBackendTimeEntry);
       }
     );
