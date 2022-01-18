@@ -14,7 +14,10 @@ export type TimeEntryBackend = {
 const TimeEntryListFromServer: React.FunctionComponent<Props> = () => {
   const [timeEntries, setTimeEntries] = React.useState<TimeEntry[]>([]);
   useEffect(() => {
-    fetch("http://localhost:3001/timeEntries")
+    const abortController = new AbortController();
+    fetch("http://localhost:3001/timeEntries", {
+      signal: abortController.signal,
+    })
       .then((response) => response.json())
       .then((data: TimeEntryBackend[]) => {
         const convertedTimeEntries = data.map((timeEntry): TimeEntry => {
@@ -30,8 +33,21 @@ const TimeEntryListFromServer: React.FunctionComponent<Props> = () => {
           ...prevTimeEntries,
           ...convertedTimeEntries,
         ]);
+      })
+      .catch((error) => {
+        if (error.name === "AbortError") {
+          return;
+        }
       });
+    return () => {
+      // cancel the request when unmounting the component
+      abortController.abort();
+    };
   }, []);
+
+  if (timeEntries.length === 0) {
+    return <div>Loading</div>;
+  }
 
   return <TimeEntryList timeEntries={timeEntries} />;
 };
