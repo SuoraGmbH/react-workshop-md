@@ -9,21 +9,32 @@ interface Props {
 const GithubRepoInformationWithReactQuery: React.FunctionComponent<Props> = ({
   repo,
 }) => {
-  const { data, isLoading, refetch, error } = useQuery<GithubRepoData>(
-    ["repoInformation", repo],
-    ({ signal }) => {
-      return fetch(`https://api.github.com/repos/${repo}`, { signal }).then(
-        (response) => response.json()
-      );
-    }
-  );
+  const { data, isLoading, refetch, error, isRefetching } =
+    useQuery<GithubRepoData>(
+      ["repoInformation", repo],
+      ({ signal }) => {
+        return fetch(`http://localhost:3001/repos/${repo}`, { signal }).then(
+          (response) => response.json()
+        );
+      },
+      {
+        refetchInterval: 30000,
+        // refetchOnWindowFocus: false,
+      }
+    );
 
   if (!data) {
-    return <div>Please wait for data…</div>;
+    return (
+      <div>
+        <pre>{JSON.stringify({ isLoading, isRefetching }, undefined, 2)}</pre>
+        Please wait for data…
+      </div>
+    );
   }
 
   return (
     <div>
+      <pre>{JSON.stringify({ isLoading, isRefetching }, undefined, 2)}</pre>
       {repo}: {data.stargazers_count}
     </div>
   );
