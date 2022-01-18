@@ -18,6 +18,8 @@ const useTimeEntriesFromServer = (): UseTimeEntriesFromServerReturnValue => {
 
   const fetchTimeEntries = useCallback(() => {
     setIsLoading(true);
+    // This is now missing the AbortController. We will not add it today,
+    // but in reality it would be good to have it in here
     fetch(baseUrl + "/timeEntries")
       .then((response) => response.json())
       .then((data: TimeEntryBackend[]) => {
