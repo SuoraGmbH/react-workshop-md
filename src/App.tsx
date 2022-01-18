@@ -9,6 +9,7 @@ import Counter from "./components/Counter";
 import TimeEntryList from "./components/TimeEntryList";
 import DynamicTimeEntryList from "./components/DynamicTimeEntryList";
 import TimeEntryListFromServer from "./components/TimeEntryListFromServer";
+import TimeEntryFormForServer from "./components/TimeEntryFormForServer";
 
 export function App() {
   const timeEntry: TimeEntry = {
@@ -22,6 +23,7 @@ export function App() {
     <div>
       <DynamicTimeEntryList />
       <hr />
+      <TimeEntryFormForServer />
       <TimeEntryListFromServer />
       {/*<Counter />*/}
       {/*<ComponentWithChildren>*/}
