@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { TimeEntry } from "../domain/TimeEntry";
 import { TimeEntryBackend } from "../examples/convertBackendTimeEntry";
+import useBaseUrl from "./useBaseUrl";
 
 type UseTimeEntriesFromServerReturnValue = {
   timeEntries: TimeEntry[];
@@ -9,6 +10,7 @@ type UseTimeEntriesFromServerReturnValue = {
 };
 
 const useTimeEntriesFromServer = (): UseTimeEntriesFromServerReturnValue => {
+  const baseUrl = useBaseUrl();
   const [timeEntries, setTimeEntries] = useState<TimeEntry[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error>();
@@ -16,7 +18,7 @@ const useTimeEntriesFromServer = (): UseTimeEntriesFromServerReturnValue => {
   useEffect(() => {
     const abortController = new AbortController();
     setIsLoading(true);
-    fetch("http://localhost:3001/timeEntries", {
+    fetch(baseUrl + "/timeEntries", {
       signal: abortController.signal,
     })
       .then((response) => response.json())

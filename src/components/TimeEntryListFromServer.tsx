@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { TimeEntry } from "../domain/TimeEntry";
 import TimeEntryList from "./TimeEntryList";
+import useBaseUrl from "../hooks/useBaseUrl";
 
 interface Props {}
 
@@ -12,10 +13,11 @@ export type TimeEntryBackend = {
 };
 
 const TimeEntryListFromServer: React.FunctionComponent<Props> = () => {
+  const baseUrl = useBaseUrl();
   const [timeEntries, setTimeEntries] = React.useState<TimeEntry[]>([]);
   useEffect(() => {
     const abortController = new AbortController();
-    fetch("http://localhost:3001/timeEntries", {
+    fetch(baseUrl + "/timeEntries", {
       signal: abortController.signal,
     })
       .then((response) => response.json())

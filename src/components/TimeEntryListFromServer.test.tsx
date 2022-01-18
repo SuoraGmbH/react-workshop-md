@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import TimeEntryListFromServer from "./TimeEntryListFromServer";
 import { setupServer } from "msw/node";
 import jsonServerTimeEntriesHandler from "../mocks/json-server/timeEntries-get";
+import { BaseUrlProvider } from "../hooks/useBaseUrl";
 
 const mockServer = setupServer(jsonServerTimeEntriesHandler);
 
@@ -11,11 +12,19 @@ describe("<TimeEntryListFromServer />", () => {
   afterAll(() => mockServer.close());
 
   it("display a loading state initially", async () => {
-    render(<TimeEntryListFromServer />);
+    render(
+      <BaseUrlProvider baseUrl="http://localhost:3001">
+        <TimeEntryListFromServer />
+      </BaseUrlProvider>
+    );
     screen.getByText(/loading/i);
   });
   it("renders a comment from the mocked backend", async () => {
-    render(<TimeEntryListFromServer />);
+    render(
+      <BaseUrlProvider baseUrl="http://localhost:3001">
+        <TimeEntryListFromServer />
+      </BaseUrlProvider>
+    );
     await screen.findByText(/Learn Redux/);
   });
 

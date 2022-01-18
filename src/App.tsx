@@ -12,6 +12,7 @@ import TimeEntryListFromServer from "./components/TimeEntryListFromServer";
 import TimeEntryFormForServer from "./components/TimeEntryFormForServer";
 import { TimeEntryListFromCustomHook } from "./components/TimeEntryListFromCustomHook";
 import { TimeEntryListWithFetchHelperForThomas } from "./components/TimeEntryListWithFetchHelperForThomas";
+import { BaseUrlContext, BaseUrlProvider } from "./hooks/useBaseUrl";
 
 export function App() {
   const timeEntry: TimeEntry = {
@@ -22,7 +23,7 @@ export function App() {
   };
 
   return (
-    <div>
+    <BaseUrlProvider baseUrl="http://localhost:3001">
       <div style={{ border: "1px solid black" }}>
         <TimeEntryListWithFetchHelperForThomas />
       </div>
@@ -45,7 +46,7 @@ export function App() {
       {/*<GithubRepoInformation repo="facebook/react" />*/}
       {/*<GithubRepoInformation repo="angular/angular" />*/}
       {/*<DynamicGithubRepoInformation />*/}
-    </div>
+    </BaseUrlProvider>
   );
 }
 
