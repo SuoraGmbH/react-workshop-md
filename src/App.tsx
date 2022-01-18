@@ -44,8 +44,10 @@ export function App() {
         <div style={{ border: "1px solid black" }}>
           <TimeEntryListWithFetchHelperForThomas />
         </div>
-        <TimeEntryListFromCustomHook />
-        <DynamicTimeEntryList />
+        <div style={{ border: "1px solid yellow" }}>
+          <TimeEntryListFromCustomHook />
+          <DynamicTimeEntryList />
+        </div>
         <hr />
         <TimeEntryFormForServer />
         <TimeEntryListFromServer />
