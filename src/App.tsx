@@ -17,6 +17,7 @@ import TimeEntryFormWithCustomHook from "./components/TimeEntryFormWithCustomHoo
 import DynamicTimeEntryListWithHooks from "./components/DynamicTimeEntryListWithHooks";
 import GithubRepoInformationWithReactQuery from "./components/GithubRepoInformationWithReactQuery";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 const queryClient = new QueryClient({
   // defaultOptions: { queries: { staleTime: 30 * 1000 } },
@@ -33,6 +34,8 @@ export function App() {
   return (
     <BaseUrlProvider baseUrl="http://localhost:3001">
       <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools />
+
         <div style={{ border: "1px solid green" }}>
           <GithubRepoInformationWithReactQuery repo="facebook/react" />
           <GithubRepoInformationWithReactQuery repo="angular/angular" />
