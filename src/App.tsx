@@ -10,6 +10,7 @@ import TimeEntryList from "./components/TimeEntryList";
 import DynamicTimeEntryList from "./components/DynamicTimeEntryList";
 import TimeEntryListFromServer from "./components/TimeEntryListFromServer";
 import TimeEntryFormForServer from "./components/TimeEntryFormForServer";
+import { TimeEntryListFromCustomHook } from "./components/TimeEntryListFromCustomHook";
 
 export function App() {
   const timeEntry: TimeEntry = {
@@ -21,6 +22,7 @@ export function App() {
 
   return (
     <div>
+      <TimeEntryListFromCustomHook />
       <DynamicTimeEntryList />
       <hr />
       <TimeEntryFormForServer />
