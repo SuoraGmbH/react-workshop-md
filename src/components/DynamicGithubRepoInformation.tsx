@@ -1,5 +1,6 @@
 import { GithubRepoInformation } from "./GithubRepoInformation";
 import { useState } from "react";
+import GithubRepoInformationWithReactQuery from "./GithubRepoInformationWithReactQuery";
 
 const DynamicGithubRepoInformation: React.FunctionComponent = () => {
   const [repoName, setRepoName] = useState("");
@@ -9,7 +10,7 @@ const DynamicGithubRepoInformation: React.FunctionComponent = () => {
         value={repoName}
         onChange={(event) => setRepoName(event.target.value)}
       />
-      <GithubRepoInformation repo={repoName} />
+      <GithubRepoInformationWithReactQuery repo={repoName} />
     </div>
   );
 };
