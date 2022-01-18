@@ -14,6 +14,7 @@ import { TimeEntryListFromCustomHook } from "./components/TimeEntryListFromCusto
 import { TimeEntryListWithFetchHelperForThomas } from "./components/TimeEntryListWithFetchHelperForThomas";
 import { BaseUrlContext, BaseUrlProvider } from "./hooks/useBaseUrl";
 import TimeEntryFormWithCustomHook from "./components/TimeEntryFormWithCustomHook";
+import DynamicTimeEntryListWithHooks from "./components/DynamicTimeEntryListWithHooks";
 
 export function App() {
   const timeEntry: TimeEntry = {
@@ -34,7 +35,7 @@ export function App() {
       <TimeEntryFormForServer />
       <TimeEntryListFromServer />
       <div style={{ border: "1px solid pink" }}>
-        <TimeEntryFormWithCustomHook />
+        <DynamicTimeEntryListWithHooks />
       </div>
       {/*<Counter />*/}
       {/*<ComponentWithChildren>*/}
