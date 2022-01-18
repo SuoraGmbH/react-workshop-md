@@ -16,12 +16,10 @@ const useTimeEntriesFromServerWithReactQuery =
     const baseUrl = useBaseUrl();
     const { isLoading, refetch, data, error } = useQuery<TimeEntry[], Error>(
       ["timeEntries"],
-      ({ signal }) => {
-        return fetch(baseUrl + "/timeEntries", { signal })
-          .then((response) => response.json())
-          .then((timeEntries: TimeEntryBackend[]) => {
-            return timeEntries.map(convertBackendTimeEntry);
-          });
+      async ({ signal }) => {
+        const response = await fetch(baseUrl + "/timeEntries", { signal });
+        const timeEntries = await response.json();
+        return timeEntries.map(convertBackendTimeEntry);
       }
     );
 
