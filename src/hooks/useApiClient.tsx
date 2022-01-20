@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { Configuration, DefaultApi } from "../generated/openapi-client";
 import useBaseUrl from "./useBaseUrl";
+import ApiClient from "../api/ApiClient";
 
-const ApiClientContext = React.createContext<DefaultApi | undefined>(undefined);
+const ApiClientContext = React.createContext<ApiClient | undefined>(undefined);
 
 type ApiClientProviderProps = {};
 // | { baseUrl: string }
@@ -13,7 +14,7 @@ export const ApiClientProvider: React.FunctionComponent<
 > = (props) => {
   const baseUrl = useBaseUrl();
 
-  const apiClient = new DefaultApi(undefined, baseUrl);
+  const apiClient = new ApiClient(new DefaultApi(undefined, baseUrl));
 
   return (
     <ApiClientContext.Provider value={apiClient}>
@@ -22,7 +23,7 @@ export const ApiClientProvider: React.FunctionComponent<
   );
 };
 
-export const useApiClient = (): DefaultApi => {
+export const useApiClient = (): ApiClient => {
   const apiClient = useContext(ApiClientContext);
 
   if (!apiClient) {

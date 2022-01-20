@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import useBaseUrl from "./useBaseUrl";
 import { TimeEntryBackend } from "../components/TimeEntryListFromServer";
 import convertBackendTimeEntry from "../examples/convertBackendTimeEntry";
+import { useApiClient } from "./useApiClient";
 
 type UseTimeEntriesFromServerReturnValue = {
   timeEntries: TimeEntry[];
@@ -14,14 +15,10 @@ type UseTimeEntriesFromServerReturnValue = {
 export const timeEntriesQueryKey = "timeEntries";
 const useTimeEntriesFromServerWithReactQuery =
   (): UseTimeEntriesFromServerReturnValue => {
-    const baseUrl = useBaseUrl();
+    const apiClient = useApiClient();
     const { isLoading, refetch, data, error } = useQuery<TimeEntry[], Error>(
       [timeEntriesQueryKey],
-      async ({ signal }) => {
-        const response = await fetch(baseUrl + "/timeEntries", { signal });
-        const timeEntries: TimeEntryBackend[] = await response.json();
-        return timeEntries.map(convertBackendTimeEntry);
-      }
+      apiClient.getTimeEntries
     );
 
     return {
