@@ -19,6 +19,8 @@ import GithubRepoInformationWithReactQuery from "./components/GithubRepoInformat
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import TimeEntryFormWithReactQueryInvalidation from "./components/TimeEntryFormWithReactQueryInvalidation";
+import { ApiClientProvider } from "./hooks/useApiClient";
+import { DefaultApi } from "./generated/openapi-client";
 
 const queryClient = new QueryClient({
   // defaultOptions: { queries: { staleTime: 30 * 1000 } },
@@ -34,43 +36,45 @@ export function App() {
 
   return (
     <BaseUrlProvider baseUrl="http://localhost:3001">
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools />
+      <ApiClientProvider>
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools />
 
-        <div style={{ border: "1px solid green" }}>
-          <GithubRepoInformationWithReactQuery repo="facebook/react" />
-          <GithubRepoInformationWithReactQuery repo="angular/angular" />
-          <DynamicGithubRepoInformation />
-        </div>
-        <div style={{ border: "1px solid black" }}>
-          <TimeEntryListWithFetchHelperForThomas />
-        </div>
-        <div style={{ border: "1px solid yellow" }}>
-          <TimeEntryListFromCustomHook />
-          <TimeEntryFormWithReactQueryInvalidation />
-        </div>
-        <DynamicTimeEntryList />
-        <hr />
-        <TimeEntryFormForServer />
-        <TimeEntryListFromServer />
-        <div style={{ border: "1px solid pink" }}>
-          <DynamicTimeEntryListWithHooks />
-        </div>
-        {/*<Counter />*/}
-        {/*<ComponentWithChildren>*/}
-        {/*  <TimeEntryView timeEntry={timeEntry} />*/}
-        {/*</ComponentWithChildren>*/}
-        {/*<ComponentWithChildren>*/}
-        {/*  <div>asdda</div>*/}
-        {/*</ComponentWithChildren>*/}
-        {/*<ComponentWithChildren></ComponentWithChildren>*/}
-        {/*<ComponentWithChildren>asdsa</ComponentWithChildren>*/}
-        {/*<TimeEntryView timeEntry={timeEntry}>Hello Children</TimeEntryView>*/}
-        {/*<TimeEntryForm />*/}
-        {/*<GithubRepoInformation repo="facebook/react" />*/}
-        {/*<GithubRepoInformation repo="angular/angular" />*/}
-        {/*<DynamicGithubRepoInformation />*/}
-      </QueryClientProvider>
+          <div style={{ border: "1px solid green" }}>
+            <GithubRepoInformationWithReactQuery repo="facebook/react" />
+            <GithubRepoInformationWithReactQuery repo="angular/angular" />
+            <DynamicGithubRepoInformation />
+          </div>
+          <div style={{ border: "1px solid black" }}>
+            <TimeEntryListWithFetchHelperForThomas />
+          </div>
+          <div style={{ border: "1px solid yellow" }}>
+            <TimeEntryListFromCustomHook />
+            <TimeEntryFormWithReactQueryInvalidation />
+          </div>
+          <DynamicTimeEntryList />
+          <hr />
+          <TimeEntryFormForServer />
+          <TimeEntryListFromServer />
+          <div style={{ border: "1px solid pink" }}>
+            <DynamicTimeEntryListWithHooks />
+          </div>
+          {/*<Counter />*/}
+          {/*<ComponentWithChildren>*/}
+          {/*  <TimeEntryView timeEntry={timeEntry} />*/}
+          {/*</ComponentWithChildren>*/}
+          {/*<ComponentWithChildren>*/}
+          {/*  <div>asdda</div>*/}
+          {/*</ComponentWithChildren>*/}
+          {/*<ComponentWithChildren></ComponentWithChildren>*/}
+          {/*<ComponentWithChildren>asdsa</ComponentWithChildren>*/}
+          {/*<TimeEntryView timeEntry={timeEntry}>Hello Children</TimeEntryView>*/}
+          {/*<TimeEntryForm />*/}
+          {/*<GithubRepoInformation repo="facebook/react" />*/}
+          {/*<GithubRepoInformation repo="angular/angular" />*/}
+          {/*<DynamicGithubRepoInformation />*/}
+        </QueryClientProvider>
+      </ApiClientProvider>
     </BaseUrlProvider>
   );
 }
