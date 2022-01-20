@@ -6,7 +6,9 @@ import TimeEntryForm from "./components/TimeEntryForm";
 import { GithubRepoInformation } from "./components/GithubRepoInformation";
 import DynamicGithubRepoInformation from "./components/DynamicGithubRepoInformation";
 import Counter from "./components/Counter";
-import TimeEntryList from "./components/TimeEntryList";
+import TimeEntryList, {
+  TimeEntryListFromBackend,
+} from "./components/TimeEntryList";
 import DynamicTimeEntryList from "./components/DynamicTimeEntryList";
 import TimeEntryListFromServer from "./components/TimeEntryListFromServer";
 import TimeEntryFormForServer from "./components/TimeEntryFormForServer";
@@ -21,6 +23,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import TimeEntryFormWithReactQueryInvalidation from "./components/TimeEntryFormWithReactQueryInvalidation";
 import { ApiClientProvider } from "./hooks/useApiClient";
 import { DefaultApi } from "./generated/openapi-client";
+import HeadlineComponent from "./components/HeadlineComponent";
 
 const queryClient = new QueryClient({
   // defaultOptions: { queries: { staleTime: 30 * 1000 } },
@@ -38,6 +41,8 @@ export function App() {
     <BaseUrlProvider baseUrl="http://localhost:3001">
       <ApiClientProvider>
         <QueryClientProvider client={queryClient}>
+          <TimeEntryListFromBackend highlight={true} />
+          <HeadlineComponent element="h1">Hallo Welt</HeadlineComponent>
           <ReactQueryDevtools />
 
           <div style={{ border: "1px solid green" }}>

@@ -1,10 +1,8 @@
 import React from "react";
 
-interface Props {
-  value: string;
-}
-const TextDisplay: React.FunctionComponent<Props> = ({ value }) => {
-  return <h1>{value}</h1>;
+interface Props {}
+const TextDisplay: React.FunctionComponent<Props> = ({ children }) => {
+  return <h1>{children}</h1>;
 };
 
 export default TextDisplay;
